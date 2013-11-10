@@ -3,6 +3,7 @@
 	<name>Chocoapp</name>
 	<comment></comment>
 	<projects>
+		<project>CloudMadeAndroidAPI</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
