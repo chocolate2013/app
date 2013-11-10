@@ -1,0 +1,21 @@
+/**
+ * 
+ */
+package com.chocolate.engSoft.cloudMade;
+
+import java.io.Serializable;
+import java.util.List;
+
+import com.chocolate.engSoft.cloudMade.geometry.Point;
+import com.chocolate.engSoft.cloudMade.routing.Route;
+import com.chocolate.engSoft.cloudMade.routing.RouteNotFoundException;
+
+/**
+ * @author joao
+ *
+ */
+public interface cloudMade extends Serializable {
+	public Route getCarRoute(Point startPoint, Point endPoint, List<Point> transitPoints) throws RouteNotFoundException;
+	public Route getBikeRoute(Point startPoint, Point endPoint, List<Point> transitPoints) throws RouteNotFoundException;
+	public Route getFootRoute(Point startPoint, Point endPoint, List<Point> transitPoints) throws RouteNotFoundException;
+}

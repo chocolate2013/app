@@ -1,0 +1,12 @@
+/**
+ * 
+ */
+package com.chocolate.engSoft.cloudMade.model;
+
+/**
+ * @author joao
+ *
+ */
+public class Route {
+
+}

@@ -1,0 +1,20 @@
+/**
+ * 
+ */
+package com.chocolate.engSoft.cloudMade;
+
+import java.io.Serializable;
+import java.util.List;
+
+import com.chocolate.engSoft.cloudMade.model.Position;
+import com.chocolate.engSoft.cloudMade.model.Route;
+
+/**
+ * @author joao
+ *
+ */
+public interface cloudMade extends Serializable {
+	public Route getCarRoute(Position startPoint, Position endPoint, List<Position> transitPoints);
+	public Route getBikeRoute(Position startPoint, Position endPoint, List<Position> transitPoints);
+	public Route getFootRoute(Position startPoint, Position endPoint, List<Position> transitPoints);
+}
