@@ -21,6 +21,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
+
 import com.appsolut.api.cloudmade.geometry.Point;
 import com.chocolate.engSoft.server.model.Comment;
 import com.chocolate.engSoft.server.model.Place;
@@ -68,7 +69,7 @@ public class Utils {
 			return null;
 		return obj.getString("token");
 	}
-	
+
 	/**
 	 * "GET /l/" and "POST /l/busca/" helper
 	 * 
@@ -209,6 +210,22 @@ public class Utils {
 		return notifications;
 	}
 
+	/**
+	 * "/l/busca/" helper
+	 * 
+	 * @param point
+	 * @return
+	 * @throws JSONException
+	 */
+	public static JSONArray pointToJson(Point point) throws JSONException {
+		if (point == null)
+			return null;
+		JSONArray array = new JSONArray();
+		array.put(0, point.lat);
+		array.put(1, point.lon);
+		return array;
+	}
+
 	// private
 	private static JSONArray stringSetToJson(Set<String> tags) {
 		if (tags == null)
@@ -218,15 +235,6 @@ public class Utils {
 		while (it.hasNext()) {
 			array.put(it.next());
 		}
-		return array;
-	}
-
-	private static JSONArray pointToJson(Point point) throws JSONException {
-		if (point == null)
-			return null;
-		JSONArray array = new JSONArray();
-		array.put(0, point.lat);
-		array.put(1, point.lon);
 		return array;
 	}
 
@@ -245,7 +253,8 @@ public class Utils {
 			throws JSONException, ParseException {
 		if (obj == null)
 			return null;
-		return new Comment(obj.getString("username"), placeFromJson(obj.getJSONObject("lugar")),
+		return new Comment(obj.getString("username"),
+				placeFromJson(obj.getJSONObject("lugar")),
 				obj.getString("texto"), dateFromJson(obj.getString("datahora")));
 	}
 
@@ -276,8 +285,8 @@ public class Utils {
 		if (obj == null)
 			return null;
 		return new Position(com.appsolut.api.cloudmade.Utils.pointFromJson(obj
-				.getJSONArray("coordenada")), placeFromJson(
-				obj.getJSONObject("lugar")),
+				.getJSONArray("coordenada")),
+				placeFromJson(obj.getJSONObject("lugar")),
 				dateFromJson(obj.getString("datahora")));
 	}
 

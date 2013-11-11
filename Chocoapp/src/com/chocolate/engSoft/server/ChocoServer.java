@@ -3,7 +3,11 @@
  */
 package com.chocolate.engSoft.server;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
+
+import org.json.JSONException;
 
 import com.appsolut.api.cloudmade.geometry.Point;
 import com.chocolate.engSoft.server.model.Place;
@@ -19,13 +23,18 @@ import com.chocolate.engSoft.server.model.User;
 public interface ChocoServer {
 
 	/**
-	 * GET /auth/
+	 * POST /auth/
 	 * 
 	 * @param user
 	 * @param password
 	 * @return true if success
+	 * @throws JSONException
+	 * @throws NoSuchAlgorithmException
+	 * @throws UnsupportedEncodingException
 	 */
-	public boolean authenticate(String user, String password);
+	public boolean authenticate(String username, String password)
+			throws UnsupportedEncodingException, NoSuchAlgorithmException,
+			JSONException;
 
 	/**
 	 * GET /l/

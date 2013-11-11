@@ -69,6 +69,12 @@ public class User extends Model {
 		super();
 	}
 
+	public User(String username, String name) {
+		super();
+		this.username = username;
+		this.name = name;
+	}
+
 	/**
 	 * @return the username
 	 */
