@@ -24,9 +24,10 @@ public class ChocoServerClient implements ChocoServer {
 	}
 
 	/**
+	 * @param host
 	 * @param port
 	 */
-	public ChocoServerClient(int port) {
+	public ChocoServerClient(String host, int port) {
 		super();
 		this.port = port;
 	}
@@ -34,7 +35,7 @@ public class ChocoServerClient implements ChocoServer {
 	@Override
 	public boolean authenticate(String user, String password) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override

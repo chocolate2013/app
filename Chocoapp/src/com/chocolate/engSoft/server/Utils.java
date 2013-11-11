@@ -7,6 +7,8 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -18,6 +20,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.annotation.SuppressLint;
 import com.appsolut.api.cloudmade.geometry.Point;
 import com.chocolate.engSoft.server.model.Comment;
 import com.chocolate.engSoft.server.model.Place;
@@ -54,7 +57,7 @@ public class Utils {
 	}
 
 	/**
-	 * "GET /auth/" and "POST /u/" helper
+	 * "POST /auth/" and "POST /u/" helper
 	 * 
 	 * @param obj
 	 * @return token
@@ -65,16 +68,17 @@ public class Utils {
 			return null;
 		return obj.getString("token");
 	}
-
+	
 	/**
 	 * "GET /l/" and "POST /l/busca/" helper
 	 * 
 	 * @param placesJson
 	 * @return list of places
 	 * @throws JSONException
+	 * @throws ParseException
 	 */
 	public static List<Place> placesFromJson(JSONArray placesJson)
-			throws JSONException {
+			throws JSONException, ParseException {
 		if (placesJson == null)
 			return null;
 		List<Place> places = new ArrayList<Place>();
@@ -121,8 +125,10 @@ public class Utils {
 	 * @param obj
 	 * @return a place
 	 * @throws JSONException
+	 * @throws ParseException
 	 */
-	public static Place placeFromJson(JSONObject obj) throws JSONException {
+	public static Place placeFromJson(JSONObject obj) throws JSONException,
+			ParseException {
 		if (obj == null)
 			return null;
 		return new Place(obj.getLong("id"),
@@ -134,7 +140,7 @@ public class Utils {
 	}
 
 	/**
-	 * "POST /u/" and POST "/u/busca/" helper
+	 * "POST /auth/", "POST /u/" and POST "/u/busca/" helper
 	 * 
 	 * @param user
 	 * @return JSON object with user information
@@ -160,12 +166,14 @@ public class Utils {
 	 * @param obj
 	 * @return user profile
 	 * @throws JSONException
+	 * @throws ParseException
 	 */
-	public static User userFromJson(JSONObject obj) throws JSONException {
+	public static User userFromJson(JSONObject obj) throws JSONException,
+			ParseException {
 		if (obj == null)
 			return null;
 		return new User(obj.getString("username"), obj.getString("nome"),
-				stringListFromJson(obj.getJSONArray("amigos")),
+				friendListFromJson(obj.getJSONArray("amigos")),
 				placeHistoryFromJson(obj.getJSONArray("posicoes")));
 	}
 
@@ -188,9 +196,10 @@ public class Utils {
 	 * @param array
 	 * @return list of notifications
 	 * @throws JSONException
+	 * @throws ParseException
 	 */
 	public static List<ServiceNotification> notificationsFromJson(
-			JSONArray array) throws JSONException {
+			JSONArray array) throws JSONException, ParseException {
 		if (array == null)
 			return null;
 		List<ServiceNotification> notifications = new ArrayList<ServiceNotification>();
@@ -222,7 +231,7 @@ public class Utils {
 	}
 
 	private static List<Comment> commentsFromJson(JSONArray array)
-			throws JSONException {
+			throws JSONException, ParseException {
 		if (array == null)
 			return null;
 		List<Comment> comments = new ArrayList<Comment>();
@@ -232,11 +241,12 @@ public class Utils {
 		return comments;
 	}
 
-	private static Comment commentFromJson(JSONObject obj) throws JSONException {
+	private static Comment commentFromJson(JSONObject obj)
+			throws JSONException, ParseException {
 		if (obj == null)
 			return null;
-		return new Comment(obj.getString("username"), positionFromJson(obj),
-				obj.getString("texto"));
+		return new Comment(obj.getString("username"), placeFromJson(obj.getJSONObject("lugar")),
+				obj.getString("texto"), dateFromJson(obj.getString("datahora")));
 	}
 
 	private static Set<String> tagsFromJson(JSONArray array)
@@ -251,7 +261,7 @@ public class Utils {
 	}
 
 	private static List<Position> placeHistoryFromJson(JSONArray array)
-			throws JSONException {
+			throws JSONException, ParseException {
 		if (array == null)
 			return null;
 		List<Position> placeHistory = new ArrayList<Position>();
@@ -262,10 +272,12 @@ public class Utils {
 	}
 
 	private static Position positionFromJson(JSONObject obj)
-			throws JSONException {
+			throws JSONException, ParseException {
 		if (obj == null)
 			return null;
-		return new Position(placeFromJson(obj.getJSONObject("lugar")),
+		return new Position(com.appsolut.api.cloudmade.Utils.pointFromJson(obj
+				.getJSONArray("coordenada")), placeFromJson(
+				obj.getJSONObject("lugar")),
 				dateFromJson(obj.getString("datahora")));
 	}
 
@@ -280,8 +292,22 @@ public class Utils {
 		return list;
 	}
 
-	private static ServiceNotification notificationFromJson(JSONObject obj)
+	private static List<User> friendListFromJson(JSONArray array)
 			throws JSONException {
+		if (array == null)
+			return null;
+		List<User> list = new ArrayList<User>();
+		for (int i = 0; i < array.length(); i++) {
+			JSONObject obj = array.getJSONObject(i);
+			User user = new User(obj.getString("username"),
+					obj.getString("nome"), null);
+			list.add(user);
+		}
+		return list;
+	}
+
+	private static ServiceNotification notificationFromJson(JSONObject obj)
+			throws JSONException, ParseException {
 		if (obj == null)
 			return null;
 		return new ServiceNotification(obj.getString("tipo"),
@@ -289,8 +315,8 @@ public class Utils {
 				dateFromJson(obj.getString("datahora")), obj.getBoolean("lida"));
 	}
 
-	private static Date dateFromJson(String string) {
-		// TODO falta saber como vem a datahora do serviço
-		return null;
+	@SuppressLint("SimpleDateFormat")
+	private static Date dateFromJson(String string) throws ParseException {
+		return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(string);
 	}
 }

@@ -15,7 +15,7 @@ public class User extends Model {
 	private String username;
 	private String name;
 	private String password;
-	private List<String> friendList;
+	private List<User> friendList;
 	private List<Position> placeHistory;
 
 	/**
@@ -38,7 +38,7 @@ public class User extends Model {
 	 * @param placeHistory
 	 */
 	public User(String username, String name, String password,
-			List<String> friendList, List<Position> placeHistory) {
+			List<User> friendList, List<Position> placeHistory) {
 		super();
 		this.username = username;
 		this.name = name;
@@ -53,7 +53,7 @@ public class User extends Model {
 	 * @param friendList
 	 * @param placeHistory
 	 */
-	public User(String username, String name, List<String> friendList,
+	public User(String username, String name, List<User> friendList,
 			List<Position> placeHistory) {
 		super();
 		this.username = username;
@@ -117,7 +117,7 @@ public class User extends Model {
 	/**
 	 * @return the friendList
 	 */
-	public List<String> getFriendList() {
+	public List<User> getFriendList() {
 		return friendList;
 	}
 
@@ -125,7 +125,7 @@ public class User extends Model {
 	 * @param friendList
 	 *            the friendList to set
 	 */
-	public void setFriendList(List<String> friendList) {
+	public void setFriendList(List<User> friendList) {
 		this.friendList = friendList;
 	}
 

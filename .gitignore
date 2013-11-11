@@ -3,3 +3,11 @@ CloudMadeAndroidAPI/bin/
 CloudMadeAndroidAPITest/bin/
 .metadata/.plugins/org.eclipse.core.resources/.history/
 .metadata/.plugins/org.eclipse.jdt.core/
+.metadata/.plugins/org.eclipse.core.resources/*
+.metadata/.plugins/org.eclipse.debug.ui/*
+.metadata/.plugins/org.eclipse.jdt.ui/*
+.metadata/.plugins/org.eclipse.ltk.core.refactoring/*
+.metadata/.plugins/org.eclipse.ui.workbench.texteditor/*
+*/bin/*
+*.class
+.metadata/.plugins/org.eclipse.ltk.ui.refactoring/*

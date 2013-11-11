@@ -1,5 +1,7 @@
 package com.chocolate.engSoft.server.model;
 
+import java.util.Date;
+
 public class Comment extends Model {
 
 	/**
@@ -7,8 +9,9 @@ public class Comment extends Model {
 	 */
 	private static final long serialVersionUID = -1621884859882810233L;
 	private String username;
-	private Position position;
+	private Place place;
 	private String text;
+	private Date date;
 
 	/**
 	 * 
@@ -29,14 +32,15 @@ public class Comment extends Model {
 
 	/**
 	 * @param username
-	 * @param position
+	 * @param place
 	 * @param text
 	 */
-	public Comment(String username, Position position, String text) {
+	public Comment(String username, Place place, String text, Date date) {
 		super();
 		this.username = username;
-		this.position = position;
+		this.place = place;
 		this.text = text;
+		this.setDate(date);
 	}
 
 	/**
@@ -55,18 +59,18 @@ public class Comment extends Model {
 	}
 
 	/**
-	 * @return the position
+	 * @return the place
 	 */
-	public Position getPosition() {
-		return position;
+	public Place getPlace() {
+		return place;
 	}
 
 	/**
-	 * @param position
+	 * @param place
 	 *            the position to set
 	 */
-	public void setPosition(Position position) {
-		this.position = position;
+	public void setPlace(Place place) {
+		this.place = place;
 	}
 
 	/**
@@ -82,5 +86,13 @@ public class Comment extends Model {
 	 */
 	public void setText(String text) {
 		this.text = text;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 }
