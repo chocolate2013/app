@@ -6,8 +6,12 @@ import java.util.List;
  * @author João Marco Maciel da Silva
  * 
  */
-public class User {
+public class User extends Model {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6301546810155103801L;
 	private String username;
 	private String name;
 	private String password;

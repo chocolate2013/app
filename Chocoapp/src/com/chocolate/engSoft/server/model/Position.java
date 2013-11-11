@@ -2,8 +2,12 @@ package com.chocolate.engSoft.server.model;
 
 import java.util.Date;
 
-public class Position {
+public class Position extends Model {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 688457570258176696L;
 	private Place place;
 	private Date date;
 

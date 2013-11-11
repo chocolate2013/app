@@ -4,11 +4,15 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author João Marco MAciel da Silva
+ * @author João Marco Maciel da Silva
  * 
  */
-public class ServiceNotification {
+public class ServiceNotification extends Model {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6058685434984713946L;
 	private String type;
 	private List<String> usernames;
 	private Date date;

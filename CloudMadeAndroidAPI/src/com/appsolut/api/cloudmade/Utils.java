@@ -90,7 +90,7 @@ public class Utils {
 		return new BBox(pointFromJson(array.getJSONArray(0)), pointFromJson(array.getJSONArray(1)));
 	}
 
-	static Point pointFromJson(JSONArray array) throws JSONException {
+	public static Point pointFromJson(JSONArray array) throws JSONException {
 		if (array == null) return null;
 		if (array.length() == 1) array = array.getJSONArray(0); //Fix of the 0.4 version
 		return new Point(array.getDouble(0), array.getDouble(1));

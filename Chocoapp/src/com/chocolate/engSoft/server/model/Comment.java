@@ -1,7 +1,11 @@
 package com.chocolate.engSoft.server.model;
 
-public class Comment {
+public class Comment extends Model {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1621884859882810233L;
 	private String username;
 	private Position position;
 	private String text;

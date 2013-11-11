@@ -9,8 +9,12 @@ import com.appsolut.api.cloudmade.geometry.Point;
  * @author João Marco Maciel da Silva
  * 
  */
-public class Place {
+public class Place extends Model {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1973032628086370429L;
 	private Long id;
 	private Point point;
 	private String name;
