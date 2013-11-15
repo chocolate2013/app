@@ -15,10 +15,6 @@ import retrofit.http.Header;
 import retrofit.http.POST;
 import retrofit.http.Path;
 
-import com.chocolate.engSoft.server.model.Place;
-import com.chocolate.engSoft.server.model.ServiceNotification;
-import com.chocolate.engSoft.server.model.User;
-
 /**
  * This is the real signature of the service
  * 
@@ -27,81 +23,80 @@ import com.chocolate.engSoft.server.model.User;
  */
 public interface chocoServerAPI {
 
-	@POST("/auth")
+	@POST("/auth/")
 	String auth(@Body String jsonString);
 
-	@POST("/auth")
+	@POST("/auth/")
 	void auth(@Body String jsonString, Callback<String> cb);
 
-	@GET("/l")
-	List<Place> getL(@Header(value = "token") String token);
+	@GET("/l/")
+	List<JSONObject> getL(@Header(value = "token") String token);
 
-	@GET("/l")
-	void getL(@Header(value = "token") String token, Callback<List<Place>> cb);
+	@GET("/l/")
+	void getL(@Header(value = "token") String token,
+			Callback<List<JSONObject>> cb);
 
-	@POST("/l")
+	@POST("/l/")
 	Long postL(@Header(value = "token") String token, @Body String place);
 
-	@POST("/l")
+	@POST("/l/")
 	void postL(@Header(value = "token") String token, @Body String place,
 			Callback<Long> cb);
 
-	@GET("/l/{id}")
+	@GET("/l/{id}/")
 	JSONObject getL(@Header(value = "token") String token, @Path("id") Long id);
 
-	@GET("/l/{id}")
+	@GET("/l/{id}/")
 	void getL(@Header(value = "token") String token, @Path("id") Long id,
 			Callback<JSONObject> cb);
 
-	@POST("/l/busca")
-	List<Place> postLBusca(@Header(value = "token") String token,
+	@POST("/l/busca/")
+	List<JSONObject> postLBusca(@Header(value = "token") String token,
 			@Body String criteria);
 
-	@POST("/l/busca")
+	@POST("/l/busca/")
 	void postLBusca(@Header(value = "token") String token,
-			@Body String criteria, Callback<List<Place>> cb);
+			@Body String criteria, Callback<List<JSONObject>> cb);
 
-	@POST("/u")
+	@POST("/u/")
 	String postU(@Body String user);
 
-	@POST("/u")
+	@POST("/u/")
 	void postU(@Body String user, Callback<String> cb);
 
-	@GET("/u/{username}")
+	@GET("/u/{username}/")
 	JSONObject getU(@Header(value = "token") String token,
 			@Path("username") String username);
 
-	@GET("/u/{username}")
+	@GET("/u/{username}/")
 	void getU(@Header(value = "token") String token,
 			@Path("username") String username, Callback<JSONObject> cb);
 
-	@POST("/u/{username}")
+	@POST("/u/{username}/")
 	void postU(@Header(value = "token") String token,
-			@Path("username") String username);
+			@Path("username") String username, @Body String nome);
 
-	@DELETE("/u/{username}")
+	@DELETE("/u/{username}/")
 	void deleteU(@Header(value = "token") String token,
 			@Path("username") String username);
 
-	@GET("/u/{username}/notificacoes")
-	List<ServiceNotification> getUNotificacoes(
-			@Header(value = "token") String token,
+	@GET("/u/{username}/notificacoes/")
+	List<JSONObject> getUNotificacoes(@Header(value = "token") String token,
 			@Path("username") String username);
 
-	@GET("/u/{username}/notificacoes")
+	@GET("/u/{username}/notificacoes/")
 	void getUNotificacoes(@Header(value = "token") String token,
-			@Path("username") String username,
-			Callback<List<ServiceNotification>> cb);
+			@Path("username") String username, Callback<List<JSONObject>> cb);
 
-	@POST("/u/{username}/adicionar")
+	@POST("/u/{username}/adicionar/")
 	void postUAdicionar(@Header(value = "token") String token,
 			@Path("username") String username);
 
 	@POST("/u/busca/")
-	List<User> postUBusca(@Header(value = "token") String token,
+	List<JSONObject> postUBusca(@Header(value = "token") String token,
 			@Body String jsonString);
 
 	@POST("/u/busca/")
 	void postUBusca(@Header(value = "token") String token,
-			@Body String jsonString, Callback<List<User>> cb);
+			@Body String jsonString, Callback<List<JSONObject>> cb);
 }

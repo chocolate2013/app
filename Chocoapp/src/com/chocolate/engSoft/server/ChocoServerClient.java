@@ -3,6 +3,7 @@ package com.chocolate.engSoft.server;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONException;
@@ -61,7 +62,7 @@ public class ChocoServerClient implements ChocoServer {
 
 	@Override
 	public List<Place> getPlaces() {
-		return service.getL(token);
+		return Utils.placesFromJson(service.getL(token));
 	}
 
 	@Override
@@ -95,7 +96,8 @@ public class ChocoServerClient implements ChocoServer {
 		JSONObject json = new JSONObject();
 		try {
 			json.put("coordenada", Utils.pointToJson(point));
-			return service.postLBusca(token, json.toString());
+			return Utils.placesFromJson(service.postLBusca(token,
+					json.toString()));
 		} catch (JSONException e) {
 			e.printStackTrace();
 			return null;
@@ -107,7 +109,8 @@ public class ChocoServerClient implements ChocoServer {
 		JSONObject json = new JSONObject();
 		try {
 			json.put("nome", name);
-			return service.postLBusca(token, json.toString());
+			return Utils.placesFromJson(service.postLBusca(token,
+					json.toString()));
 		} catch (JSONException e) {
 			e.printStackTrace();
 			return null;
@@ -119,7 +122,8 @@ public class ChocoServerClient implements ChocoServer {
 		JSONObject json = new JSONObject();
 		try {
 			json.put("tag", tag);
-			return service.postLBusca(token, json.toString());
+			return Utils.placesFromJson(service.postLBusca(token,
+					json.toString()));
 		} catch (JSONException e) {
 			e.printStackTrace();
 			return null;
@@ -150,8 +154,8 @@ public class ChocoServerClient implements ChocoServer {
 	}
 
 	@Override
-	public void setName(String username) {
-		service.postU(token, username);
+	public void setName(String username, String newName) {
+		service.postU(token, username, newName);
 	}
 
 	@Override
@@ -161,7 +165,17 @@ public class ChocoServerClient implements ChocoServer {
 
 	@Override
 	public List<ServiceNotification> getNotifications(String username) {
-		return service.getUNotificacoes(token, username);
+		try {
+			return Utils.notificationsFromJson(service.getUNotificacoes(token,
+					username));
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new ArrayList<ServiceNotification>();
 	}
 
 	@Override
@@ -174,7 +188,8 @@ public class ChocoServerClient implements ChocoServer {
 		JSONObject json;
 		try {
 			json = Utils.userToJson(new User(username, name));
-			return service.postUBusca(username, json.toString());
+			return Utils.usersFromJson(service.postUBusca(username,
+					json.toString()));
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		} catch (NoSuchAlgorithmException e) {
@@ -184,4 +199,5 @@ public class ChocoServerClient implements ChocoServer {
 		}
 		return null;
 	}
+
 }

@@ -78,16 +78,25 @@ public class Utils {
 	 * @throws JSONException
 	 * @throws ParseException
 	 */
-	public static List<Place> placesFromJson(JSONArray placesJson)
-			throws JSONException, ParseException {
-		if (placesJson == null)
+	public static List<Place> placesFromJson(List<JSONObject> jsonList) {
+		if (jsonList == null)
 			return null;
 		List<Place> places = new ArrayList<Place>();
-		for (int i = 0; i < placesJson.length(); i++) {
-			places.add(placeFromJson(placesJson.getJSONObject(i)));
+		try {
+			for (JSONObject jsonObject : jsonList) {
+				places.add(Utils.placeFromJson(jsonObject));
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return places;
 	}
+
+
 
 	/**
 	 * "POST /l/" helper
@@ -200,12 +209,12 @@ public class Utils {
 	 * @throws ParseException
 	 */
 	public static List<ServiceNotification> notificationsFromJson(
-			JSONArray array) throws JSONException, ParseException {
+			List<JSONObject> array) throws JSONException, ParseException {
 		if (array == null)
 			return null;
 		List<ServiceNotification> notifications = new ArrayList<ServiceNotification>();
-		for (int i = 0; i < array.length(); i++) {
-			notifications.add(notificationFromJson(array.getJSONObject(i)));
+		for (JSONObject jsonObject : array) {
+			notifications.add(notificationFromJson(jsonObject));
 		}
 		return notifications;
 	}
@@ -214,7 +223,7 @@ public class Utils {
 	 * "/l/busca/" helper
 	 * 
 	 * @param point
-	 * @return
+	 * @return an array with the coordinates
 	 * @throws JSONException
 	 */
 	public static JSONArray pointToJson(Point point) throws JSONException {
@@ -224,6 +233,30 @@ public class Utils {
 		array.put(0, point.lat);
 		array.put(1, point.lon);
 		return array;
+	}
+	
+	/**
+	 * "/l/busca/" helper
+	 * 
+	 * @param jsonList
+	 * @return a list of users with a search criteria
+	 */
+	public static List<User> usersFromJson(List<JSONObject> jsonList) {
+		if (jsonList == null)
+			return null;
+		List<User> users = new ArrayList<User>();
+		try {
+		for (JSONObject jsonObject : jsonList) {
+				users.add(userFromJson(jsonObject));
+		}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return users;
 	}
 
 	// private

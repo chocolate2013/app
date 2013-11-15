@@ -102,9 +102,10 @@ public interface ChocoServer {
 	/**
 	 * POST /u/<username> Change the user`s name if he is the owner of the token
 	 * 
-	 * @param name
+	 * @param username
+	 * @param new name to set
 	 */
-	public void setName(String name);
+	public void setName(String username, String newName);
 
 	/**
 	 * DELETE /u/<username>
@@ -134,7 +135,7 @@ public interface ChocoServer {
 	 * 
 	 * @param username
 	 * @param name
-	 * @return list of User a the search criteria
+	 * @return list of User with a the search criteria
 	 */
 	public List<User> searchUsers(String username, String name);
 }
