@@ -3,6 +3,24 @@
 
     <string name="app_name">Chocoapp</string>
     <string name="action_settings">Settings</string>
+	<string name="edit_message">Buscar</string>
+    <string name="enviar">Enviar</string>
+    <string name="title_activity_search_location">SearchLocation</string>
     <string name="hello_world">Hello world!</string>
-
+    <string name="title_activity_notification_screen">NotificationScreen</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_friend_list">FriendList</string>
+    <string name="Add_Friends">Adicionar amigos</string>
+    <string name="title_activity_startscreen">Startscreen</string>
+    <string name="title_activity_go_bandejar">GoBandejar</string>
+    <string name="rest_Central">Central</string>
+    <string name="rest_Quimica">Química</string>
+    <string name="rest_Fisica">Física</string>
+    <string name="rest_Prefeitura">Prefeitura</string>
+    <string name="vou_bandejar">Vou bandejar</string>
+    <string name="title_activity_display_search_location">DisplaySearchLocation</string>
+    
+    
 </resources>
