@@ -16,14 +16,80 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.chocolate.engSoft.MainActivity"
-            android:label="@string/app_name" >
+            android:name="com.chocolate.engSoft.Startscreen"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:theme="@style/android:Theme.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.chocolate.engSoft.SearchLocation"
+            android:label="@string/title_activity_search_location"
+            android:parentActivityName="com.chocolate.engSoft.MainActivity" >
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chocolate.engSoft.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.chocolate.engSoft.MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_main"
+            android:theme="@style/android:Theme.NoTitleBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.chocolate.engSoft.NotificationScreen"
+            android:label="@string/title_activity_notification_screen"
+            android:parentActivityName="com.example.apptest.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chocolate.engSoft.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.chocolate.engSoft.FriendList"
+            android:label="@string/title_activity_friend_list"
+            android:parentActivityName="com.example.apptest.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chocolate.engSoft.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.chocolate.engSoft.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:windowSoftInputMode="adjustResize|stateVisible" >
+        </activity>
+        <activity
+            android:name="com.chocolate.engSoft.GoBandejar"
+            android:label="@string/title_activity_go_bandejar"
+            android:parentActivityName="com.chocolate.engSoft.NotificationScreen" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chocolate.engSoft.NotificationScreen" />
+        </activity>
+        <activity
+            android:name="com.chocolate.engSoft.DisplaySearchLocation"
+            android:label="@string/title_activity_display_search_location"
+            android:parentActivityName="com.chocolate.engSoft.SearchLocation" >
+            <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.chocolate.engSoft.SearchLocation" />
+        </activity>
+        
     </application>
 
 </manifest>
