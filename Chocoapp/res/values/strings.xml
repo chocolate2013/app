@@ -10,7 +10,7 @@
     <string name="title_activity_notification_screen">NotificationScreen</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="welcome">WELCOME!</string>
     <string name="title_activity_friend_list">FriendList</string>
     <string name="Add_Friends">Adicionar amigos</string>
     <string name="title_activity_startscreen">Startscreen</string>

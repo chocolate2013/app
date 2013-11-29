@@ -89,7 +89,6 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int action_sign_in_short=0x7f060018;
         public static final int app_name=0x7f060000;
         public static final int dummy_button=0x7f060008;
-        public static final int dummy_content=0x7f060009;
         public static final int edit_message=0x7f060002;
         public static final int enviar=0x7f060003;
         public static final int error_field_required=0x7f06001e;
@@ -115,6 +114,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int title_activity_search_location=0x7f060004;
         public static final int title_activity_startscreen=0x7f06000c;
         public static final int vou_bandejar=0x7f060012;
+        public static final int welcome=0x7f060009;
     }
     public static final class style {
         /** 
