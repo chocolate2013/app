@@ -22,8 +22,10 @@ package com.chocolate.engSoft.server;
  * @author Mykola Paliyenko
  * 
  */
-@SuppressWarnings("serial")
+
 public class HTTPError extends RuntimeException {
+
+	private static final long serialVersionUID = 5597567224087359470L;
 
 	public HTTPError(Exception cause) {
 		super(cause);
