@@ -1,7 +1,6 @@
 package com.chocolate.engSoft.server.model;
 
 import java.util.List;
-import java.util.Set;
 
 import com.appsolut.api.cloudmade.geometry.Point;
 
@@ -19,7 +18,7 @@ public class Place extends Model {
 	private Point point;
 	private String name;
 	private String description;
-	private Set<String> tags;
+	private List<String> tags;
 	private List<Comment> comments;
 
 	/**
@@ -31,7 +30,7 @@ public class Place extends Model {
 	 * @param comments
 	 */
 	public Place(Long id, Point point, String name, String description,
-			Set<String> tags, List<Comment> comments) {
+			List<String> tags, List<Comment> comments) {
 		super();
 		this.id = id;
 		this.point = point;
@@ -49,7 +48,7 @@ public class Place extends Model {
 	 * @param tags
 	 */
 	public Place(Long id, Point point, String name, String description,
-			Set<String> tags) {
+			List<String> tags) {
 		super();
 		this.id = id;
 		this.point = point;
@@ -121,7 +120,7 @@ public class Place extends Model {
 	/**
 	 * @return the tags
 	 */
-	public Set<String> getTags() {
+	public List<String> getTags() {
 		return tags;
 	}
 
@@ -129,7 +128,7 @@ public class Place extends Model {
 	 * @param tags
 	 *            the tags to set
 	 */
-	public void setTags(Set<String> tags) {
+	public void setTags(List<String> tags) {
 		this.tags = tags;
 	}
 

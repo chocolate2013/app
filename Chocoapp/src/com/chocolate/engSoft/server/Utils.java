@@ -11,10 +11,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -96,8 +94,6 @@ public class Utils {
 		return places;
 	}
 
-
-
 	/**
 	 * "POST /l/" helper
 	 * 
@@ -125,7 +121,7 @@ public class Utils {
 		obj.put("coordenada", pointToJson(place.getPoint()));
 		obj.put("nome", place.getName());
 		obj.put("descricao", place.getDescription());
-		obj.put("tags", stringSetToJson(place.getTags()));
+		obj.put("tags", stringListToJson(place.getTags()));
 		return obj;
 	}
 
@@ -234,7 +230,7 @@ public class Utils {
 		array.put(1, point.lon);
 		return array;
 	}
-	
+
 	/**
 	 * "/l/busca/" helper
 	 * 
@@ -246,9 +242,9 @@ public class Utils {
 			return null;
 		List<User> users = new ArrayList<User>();
 		try {
-		for (JSONObject jsonObject : jsonList) {
+			for (JSONObject jsonObject : jsonList) {
 				users.add(userFromJson(jsonObject));
-		}
+			}
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -260,7 +256,7 @@ public class Utils {
 	}
 
 	// private
-	private static JSONArray stringSetToJson(Set<String> tags) {
+	private static JSONArray stringListToJson(List<String> tags) {
 		if (tags == null)
 			return null;
 		JSONArray array = new JSONArray();
@@ -291,11 +287,11 @@ public class Utils {
 				obj.getString("texto"), dateFromJson(obj.getString("datahora")));
 	}
 
-	private static Set<String> tagsFromJson(JSONArray array)
+	private static List<String> tagsFromJson(JSONArray array)
 			throws JSONException {
 		if (array == null)
 			return null;
-		Set<String> tags = new HashSet<String>();
+		List<String> tags = new ArrayList<String>();
 		for (int i = 0; i < array.length(); i++) {
 			tags.add(array.getString(i));
 		}
