@@ -39,8 +39,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class id {
         public static final int RelativeLayout2=0x7f09000d;
-        public static final int action_forgot_password=0x7f090016;
-        public static final int action_settings=0x7f090015;
+        public static final int action_forgot_password=0x7f090015;
+        public static final int action_settings=0x7f090014;
         public static final int btn_central=0x7f090000;
         public static final int btn_fisica=0x7f090001;
         public static final int btn_friends=0x7f090011;
@@ -48,9 +48,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int btn_prefeitura=0x7f090003;
         public static final int btn_quimica=0x7f090002;
         public static final int dummy_button=0x7f09000f;
-        public static final int edit_message=0x7f090014;
+        public static final int edit_message=0x7f090013;
         public static final int email=0x7f090007;
-        public static final int expandableListView1=0x7f090013;
         public static final int fullscreen_content=0x7f09000c;
         public static final int fullscreen_content_controls=0x7f09000e;
         public static final int login=0x7f090009;
